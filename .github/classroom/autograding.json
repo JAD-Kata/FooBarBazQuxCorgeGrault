@@ -1,7 +1,7 @@
 {
   "tests": [
     {
-      "name": "Test Foo-Bar Association",
+      "name": "Test Foo-Bar one-way association",
       "setup": "",
       "run": "mvn -B test -Dtest=FooTest#barTest --file pom.xml",
       "input": null,
@@ -11,7 +11,7 @@
       "points": 4
     },
     {
-      "name": "Test negativeSize()",
+      "name": "Test Foo-Baz one-way aggregation",
       "setup": "",
       "run": "mvn -B test -Dtest=FooTest#bazTest --file pom.xml",
       "input": null,
@@ -21,7 +21,17 @@
       "points": 1
     },
     {
-      "name": "Test zeroSize()",
+      "name": "Test Foo-Qux one-way composition",
+      "setup": "",
+      "run": "mvn -B test -Dtest=FooTest#quxTest --file pom.xml",
+      "input": null,
+      "output": null,
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Test Foo-Corge bidirectional association",
       "setup": "",
       "run": "mvn -B test -Dtest=FooTest#corgeTest --file pom.xml",
       "input": null,
@@ -31,19 +41,9 @@
       "points": 1
     },
     {
-      "name": "Test isEmpty()",
+      "name": "Test Foo-Grault bidirectional composition",
       "setup": "",
       "run": "mvn -B test -Dtest=FooTest#graultTest --file pom.xml",
-      "input": null,
-      "output": null,
-      "comparison": "exact",
-      "timeout": 1,
-      "points": 1
-    },
-    {
-      "name": "Test isFull()",
-      "setup": "",
-      "run": "mvn -B test -Dtest=FooTest#qucTest --file pom.xml",
       "input": null,
       "output": null,
       "comparison": "exact",
