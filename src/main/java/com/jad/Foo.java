@@ -34,7 +34,7 @@ public class Foo {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-    public void setCorge(final Corge firstCorge) {
+    public void setCorge(final Corge corge) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 }
