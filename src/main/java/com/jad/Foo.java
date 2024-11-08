@@ -1,40 +1,58 @@
 package com.jad;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Foo {
+    private Bar bar;
+    private List<Baz> bazs;
+    private Qux qux;
+    private List<Grault> graults;
+    private Corge corge;
+
     public Foo(final Bar bar) {
+        this.bar = bar;
+        this.bazs = new ArrayList<>();
+        this.qux = new Qux();
+        this.graults = new ArrayList<>();
+        this.corge = new Corge(this);
     }
 
     public Bar getBar() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return this.bar;
     }
 
     public List<Baz> getBazs() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return this.bazs;
     }
 
     public void addBaz(final Baz baz) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        this.bazs.add(baz);
     }
 
     public Qux getQux() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return this.qux;
     }
 
     public List<Grault> getGraults() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return this.graults;
     }
 
     public void addGrault() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        this.graults.add(new Grault(this));
     }
 
     public Corge getCorge() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return this.corge;
     }
 
-    public void setCorge(final Corge firstCorge) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void setCorge(final Corge corge) {
+        if (this.corge != null) {
+            this.corge.setFoo(null);
+        }
+        this.corge = corge;
+        if (this.corge != null && this.corge.getFoo() != this) {
+            this.corge.setFoo(this);
+        }
     }
 }

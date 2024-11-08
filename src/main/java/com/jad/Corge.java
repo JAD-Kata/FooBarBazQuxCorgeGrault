@@ -1,14 +1,20 @@
 package com.jad;
 
 public class Corge {
+    private Foo foo;
+
     public Corge(final Foo foo) {
+        this.setFoo(foo);
     }
 
     public Foo getFoo() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return this.foo;
     }
 
     public void setFoo(final Foo foo) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        this.foo = foo;
+        if (this.foo != null && this.foo.getCorge() != this) {
+            this.foo.setCorge(this);
+        }
     }
 }
