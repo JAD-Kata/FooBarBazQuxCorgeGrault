@@ -1,19 +1,9 @@
 {
   "tests": [
     {
-      "name": "Test Foo-Bar one-way association",
+      "name": "Test Bar class",
       "setup": "",
-      "run": "mvn -B test -Dtest=FooTest#barTest --file pom.xml",
-      "input": null,
-      "output": null,
-      "comparison": "exact",
-      "timeout": 1,
-      "points": 4
-    },
-    {
-      "name": "Test Foo-Baz one-way aggregation",
-      "setup": "",
-      "run": "mvn -B test -Dtest=FooTest#bazTest --file pom.xml",
+      "run": "mvn -B test -Dtest=BarTest#topLevelClassTest,BarTest#countAttributesTest,BarTest#countMethodsTest --file pom.xml",
       "input": null,
       "output": null,
       "comparison": "exact",
@@ -21,9 +11,9 @@
       "points": 1
     },
     {
-      "name": "Test Foo-Qux one-way composition",
+      "name": "Test Baz class",
       "setup": "",
-      "run": "mvn -B test -Dtest=FooTest#quxTest --file pom.xml",
+      "run": "mvn -B test -Dtest=BazTest#topLevelClassTest,BazTest#countAttributesTest,BazTest#countMethodsTest --file pom.xml",
       "input": null,
       "output": null,
       "comparison": "exact",
@@ -31,9 +21,9 @@
       "points": 1
     },
     {
-      "name": "Test Foo-Corge bidirectional association",
+      "name": "Test Qux class",
       "setup": "",
-      "run": "mvn -B test -Dtest=FooTest#corgeTest --file pom.xml",
+      "run": "mvn -B test -Dtest=QuxTest#topLevelClassTest,QuxTest#countAttributesTest,QuxTest#countMethodsTest --file pom.xml",
       "input": null,
       "output": null,
       "comparison": "exact",
@@ -41,14 +31,104 @@
       "points": 1
     },
     {
-      "name": "Test Foo-Grault bidirectional composition",
+      "name": "Test Corge class",
       "setup": "",
-      "run": "mvn -B test -Dtest=FooTest#graultTest --file pom.xml",
+      "run": "mvn -B test -Dtest=CorgeTest#topLevelClassTest,CorgeTest#countAttributesTest,CorgeTest#countMethodsTest,CorgeTest#constructorTest --file pom.xml",
+      "input": null,
+      "output": null,
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 2
+    },
+    {
+      "name": "Test Grault class",
+      "setup": "",
+      "run": "mvn -B test -Dtest=GraultTest#topLevelClassTest,GraultTest#countAttributesTest,GraultTest#countMethodsTest,GraultTest#constructorTest --file pom.xml",
+      "input": null,
+      "output": null,
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 2
+    },
+    {
+      "name": "Test Foo class",
+      "setup": "",
+      "run": "mvn -B test -Dtest=FooTest#topLevelClassTest,FooTest#countAttributesTest,FooTest#countMethodsTest,FooTest#constructorTest,FooTest#barAttributeTest,FooTest#bazsAttributeTest,FooTest#quxAttributeTest,FooTest#corgeAttributeTest,FooTest#graultsAttributeTest --file pom.xml",
+      "input": null,
+      "output": null,
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 2
+    },
+    {
+      "name": "Test Corge->Foo association",
+      "setup": "",
+      "run": "mvn -B test -Dtest=CorgeTest#fooAttributeTest,CorgeTest#getFooTest --file pom.xml",
+      "input": null,
+      "output": null,
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 2
+    },
+    {
+      "name": "Test Grault->Foo association",
+      "setup": "",
+      "run": "mvn -B test -Dtest=GraultTest#fooAttributeTest,GraultTest#getFooTest --file pom.xml",
+      "input": null,
+      "output": null,
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 2
+    },
+    {
+      "name": "Test Foo->Bar one-way association",
+      "setup": "",
+      "run": "mvn -B test -Dtest=FooTest#barAttributeTest,FooTest#getBarTest --file pom.xml",
       "input": null,
       "output": null,
       "comparison": "exact",
       "timeout": 1,
       "points": 1
+    },
+    {
+      "name": "Test Foo->Baz one-way aggregation",
+      "setup": "",
+      "run": "mvn -B test -Dtest=FooTest#bazsAttributeTest,FooTest#getBazsTest --file pom.xml",
+      "input": null,
+      "output": null,
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Test Foo->Qux one-way composition",
+      "setup": "",
+      "run": "mvn -B test -Dtest=FooTest#quxAttributeTest,FooTest#getQuxTest --file pom.xml",
+      "input": null,
+      "output": null,
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Test Foo->Corge bidirectional association",
+      "setup": "",
+      "run": "mvn -B test -Dtest=FooTest#corgeAttributeTest,FooTest#getCorgeAndSetCorgeTest --file pom.xml",
+      "input": null,
+      "output": null,
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 2
+    },
+    {
+      "name": "Test Foo->Grault bidirectional composition",
+      "setup": "",
+      "run": "mvn -B test -Dtest=FooTest#graultsAttributeTest,FooTest#addGraultTest --file pom.xml",
+      "input": null,
+      "output": null,
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 2
     }
   ]
 }
