@@ -1,0 +1,132 @@
+name: Autograding Tests
+
+on:
+  - push
+  - workflow_dispatch
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4.5.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Test Bar class
+        id: test-bar-class
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test Bar class
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=BarTest#classTest --file pom.xml
+          timeout: 1
+          max-score: 1
+
+      - name: Test Baz enum
+        id: test-baz-class
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test EBaz enum
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=BazTest#classTest --file pom.xml
+          timeout: 1
+          max-score: 1
+
+      - name: Test Qux class
+        id: test-qux-class
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test Qux class
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=QuxTest#classTest --file pom.xml
+          timeout: 1
+          max-score: 1
+
+      - name: Test Grault class
+        id: test-grault-class
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test Grault class
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=GraultTest#classTest --file pom.xml
+          timeout: 1
+          max-score: 2
+
+      - name: Test Corge class
+        id: test-corge-class
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test Corge class
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=CorgeTest#classTest --file pom.xml
+          timeout: 1
+          max-score: 2
+
+      - name: Test Foo class
+        id: test-foo-class
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test Foo class
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=FooTest#classTest --file pom.xml
+          timeout: 1
+          max-score: 2
+
+      - name: Test Corge relation
+        id: test-corge-relation
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test Corge relation
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=CorgeTest#relationsTest --file pom.xml
+          timeout: 1
+          max-score: 2
+
+      - name: Test Grault relation
+        id: test-grault-relation
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test Grault relation
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=GraultTest#relationsTest --file pom.xml
+          timeout: 1
+          max-score: 2
+
+      - name: Test Foo relation
+        id: test-foo-relation
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Test Foo relation
+          setup-command: ''
+          command: mvn -B -q -fae test -Dtest=FooTest#relationsTest --file pom.xml
+          timeout: 1
+          max-score: 7
+
+      - name: Autograding Reporter
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          TEST-BAR-CLASS_RESULTS: "${{steps.test-bar-class.outputs.result}}"
+          TEST-BAZ-CLASS_RESULTS: "${{steps.test-baz-class.outputs.result}}"
+          TEST-QUX-CLASS_RESULTS: "${{steps.test-qux-class.outputs.result}}"
+          TEST-GRAULT-CLASS_RESULTS: "${{steps.test-grault-class.outputs.result}}"
+          TEST-CORGE-CLASS_RESULTS: "${{steps.test-corge-class.outputs.result}}"
+          TEST-FOO-CLASS_RESULTS: "${{steps.test-foo-class.outputs.result}}"
+          TEST-CORGE-RELATION_RESULTS: "${{steps.test-corge-relation.outputs.result}}"
+          TEST-GRAULT-RELATION_RESULTS: "${{steps.test-grault-relation.outputs.result}}"
+          TEST-FOO-RELATION_RESULTS: "${{steps.test-foo-relation.outputs.result}}"
+
+
+        with:
+          runners: test-bar-class,test-baz-class,test-qux-class,test-grault-class,test-corge-class,test-foo-class,test-corge-relation,test-grault-relation,test-foo-relation
